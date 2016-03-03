@@ -3,7 +3,7 @@ using System.Collections;
 
 
 public class CharacterMove : MonoBehaviour {
-
+	AudioSource sound;
     Rigidbody2D body;
     Animator anim;
 
@@ -34,6 +34,7 @@ public class CharacterMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		 sound = gameObject.GetComponent<AudioSource> ();
 
         body = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponentInChildren<Animator>();
@@ -89,7 +90,8 @@ public class CharacterMove : MonoBehaviour {
                 }
                 //normal jump
                 if (Input.GetKeyDown(KeyCode.UpArrow) && !jumping)
-                {
+				{
+					sound.Play();
                     //Jump if they aren't already jumping
                     //anim.SetBool("Jumping", true);
                     body.AddForce(new Vector2(0, 1) * jumpStrength);
